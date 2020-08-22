@@ -1,0 +1,89 @@
+{
+	"name": "fixlink",
+	"displayName": "FixLink",
+	"description": "",
+	"version": "0.0.1",
+	"publisher": "maho",
+	"engines": {
+		"vscode": "^1.48.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"vscode",
+		"extension",
+		"problem solving url",
+		"problems",
+		"solution proposals"
+	  ],
+	"activationEvents": [
+		"*"
+	],
+	"capabilities": {
+		"codeActionProvider": "true"
+	},
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"title" : "FixLink",
+			"type" : "object",
+			"properties" : {
+				"fixlink.targets" : {
+					"type" : ["array", "object"],
+					"default" : [
+						{
+						  "name": "FixLink",
+						  "url": "https://www.google.com/search?q=",
+						  "regexp" : ".*\"(Misra.*)\".*",
+						  "urlParameter": "${regexp_match}",
+						  "maxParamLength": 500
+						},
+						{
+							"name": "CertLink",
+							"url": "https://www.stackoverflow.com/",
+							"regexp" : ".*\"(Cert.*)\".*",
+							"urlParameter": "${regexp_match}",
+							"maxParamLength": 500
+						},
+						{
+							"name": "TestLink",
+							"url": "https://www.stackoverflow.com/",
+							"regexp" : ".*\"(Test.*)\".*",
+							"urlParameter": "${languageId}",
+							"maxParamLength": 500
+						},
+						{
+							"name": "Autosar14Guidelines",
+							"url": "https://www.autosar.org/fileadmin/user_upload/standards/adaptive/17-03/AUTOSAR_RS_CPP14Guidelines.pdf",
+							"urlParameter": "",
+							"maxParamLength": 500
+						}
+					],
+					"description" : "Specifies the base URL where the problem solutions can be found."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.48.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^14.0.27",
+		"eslint": "^7.6.0",
+		"@typescript-eslint/eslint-plugin": "^3.8.0",
+		"@typescript-eslint/parser": "^3.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.0.1",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.4.0"
+	}
+}
